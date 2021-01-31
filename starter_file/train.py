@@ -19,8 +19,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LinearRegression
-from sklean.metrics import metrics
+from sklearn.tree import DecisionTreeRegressor
 
 
 from azureml.core.run import Run
@@ -30,7 +29,7 @@ def clean_data(data):
     """
     clean input housing data using one-hot encoding and standardscaler, return dataframes X and y
     """
-    cleaned_data = data.to_pandas_dataframe().dropna().reset_index(drop=True)
+    cleaned_data = data.dropna().reset_index(drop=True)
     #one-hot encoding of ocean_proximity column
     one_hot_data = pd.concat([cleaned_data.drop("ocean_proximity",axis = 1), pd.get_dummies(cleaned_data["ocean_proximity"],prefix = "ocean_proximity")], axis = 1)
     SS = StandardScaler()
@@ -53,11 +52,12 @@ def fetch_housing_data(housing_url=HOUSING_URL, housing_path=HOUSING_PATH):
     housing_tgz.extractall(path=housing_path)
     housing_tgz.close()
     csv_path = os.path.join(HOUSING_PATH, "housing.csv")
-    ds = TabularDatasetFactory.from_delimited_files(csv_path, separator = ',')
-    return ds
+    print(csv_path)
+    df = pd.read_csv(csv_path)
+    return df
 
-ds = fetch_housing_data()
-X, y = clean_data(ds)
+df = fetch_housing_data()
+X, y = clean_data(df)
 
 # TODO: Split data into train and test sets.
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3)
@@ -66,32 +66,25 @@ run = Run.get_context()
 
 def main():
     # Add arguments to script
-#    parser = argparse.ArgumentParser()
-#
-#    parser.add_argument('--C', type=float, default=1.0, help="Inverse of regularization strength. Smaller values cause stronger regularization")
-#    parser.add_argument('--max_iter', type=int, default=100, help="Maximum number of iterations to converge")
-#
-#    args = parser.parse_args()
-#
-#    run.log("Regularization Strength:", np.float(args.C))
-#    run.log("Max iterations:", np.int(args.max_iter))
-#
-#    model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
-#
-#    r2 = metrics.r2_score(y_test, y_predict)
-#    run.log("Accuracy", np.float(accuracy))
-#
-#    os.makedirs('./outputs', exist_ok = True)
-#    joblib.dump(value = model, filename='./outputs/model.joblib')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--max_depth', type=int, default=4, help="Max depth of the decision tree")
+    parser.add_argument('--min_samples_split', type=int, default=2, help="Min samples split number")
+    parser.add_argument('--min_samples_leaf', type=int, default=1, help="Min number of samples in a leaf")
+    args = parser.parse_args()
 
-#===========================================================
+    run.log("Max Depth:", np.int(args.max_depth))
+    run.log("Min Samples Split:", np.int(args.min_samples_split))
+    run.log("Min Samples Leaf:", np.int(args.min_samples_leaf))
 
-    linear_model = LinearRegression()
-    linear_model.fit(X_train,y_train)
+    DT_model = DecisionTreeRegressor(max_depth=args.max_depth, min_samples_split=args.min_samples_split, min_samples_leaf=args.min_samples_leaf)
+    DT_model.fit(X_train,y_train)
 
+    y_predict = DT_mode.predict(X_test)
+    r2_score = metrics.r2_score(y_test, y_predict)
+    run.log("r2_score", np.float(r2_score))
 
-    y_predict = linear_model.predict(X_test)
-#    r2 = metrics.r2_score(y_test, y_predict)
+    os.makedirs('./outputs_hyperdrive', exist_ok = True)
+    joblib.dump(value = model, filename='./outputs_hyperdrive/model.joblib')
 
 if __name__ == '__main__':
     main()
