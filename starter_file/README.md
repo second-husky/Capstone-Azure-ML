@@ -1,8 +1,13 @@
 *NOTE:* This file is a template that you can use to create the README for your project. The *TODO* comments below will highlight the information you should be sure to include.
 
-# Your Project Title Here
+# California Housing Price Prediction by Azure AutoML and Hyperdrive
 
 *TODO:* Write a short introduction to your project.
+
+The goal of this project is to use a California Housing Price dataset to train a machine learning model to predict the housing price.
+
+This dataset contains California Housing Price data downloaded from https://raw.githubusercontent.com/ageron/handson-ml/master/ and was used as an example in Hands-ON Machine Learning with Scikit-Learn & TensorFLow by Aurelien Geron.THe dataset is an adapted version from the original data from the Statlib repository collected from the 1990 California census.
+
 
 ## Project Set Up and Installation
 *OPTIONAL:* If your project has any special installation steps, this is where you should put it. To turn this project into a professional portfolio project, you are encouraged to explain how to set up this project in AzureML.
