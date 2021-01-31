@@ -14,7 +14,7 @@ from six.moves import urllib
 import numpy as np
 import pandas as pd
 
-
+from sklearn import metrics
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
@@ -79,12 +79,12 @@ def main():
     DT_model = DecisionTreeRegressor(max_depth=args.max_depth, min_samples_split=args.min_samples_split, min_samples_leaf=args.min_samples_leaf)
     DT_model.fit(X_train,y_train)
 
-    y_predict = DT_mode.predict(X_test)
+    y_predict = DT_model.predict(X_test)
     r2_score = metrics.r2_score(y_test, y_predict)
     run.log("r2_score", np.float(r2_score))
 
     os.makedirs('./outputs_hyperdrive', exist_ok = True)
-    joblib.dump(value = model, filename='./outputs_hyperdrive/model.joblib')
+    joblib.dump(value = DT_model, filename='./outputs_hyperdrive/model.joblib')
 
 if __name__ == '__main__':
     main()
