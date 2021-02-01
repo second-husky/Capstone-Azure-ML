@@ -80,11 +80,11 @@ def main():
     DT_model.fit(X_train,y_train)
 
     y_predict = DT_model.predict(X_test)
-    r2_score = metrics.r2_score(y_test, y_predict)
+    r2_score = DT_model.score(X_test, y_test)
     run.log("r2_score", np.float(r2_score))
 
-    os.makedirs('./outputs_hyperdrive', exist_ok = True)
-    joblib.dump(value = DT_model, filename='./outputs_hyperdrive/model.joblib')
+    os.makedirs('./outputs', exist_ok = True)
+    joblib.dump(value = DT_model, filename='./outputs/model.joblib')
 
 if __name__ == '__main__':
     main()
