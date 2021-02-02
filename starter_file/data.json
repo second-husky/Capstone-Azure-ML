@@ -1,0 +1,17 @@
+{"data": 
+[
+{'longitude': -1.2025339157924844,
+ 'latitude': 0.798943230972673,
+ 'housing_median_age': 0.3468139212594067,
+ 'total_rooms': 0.42718693585622175,
+ 'total_bedrooms': 0.5651250878784122,
+ 'population': 0.43863527266031216,
+ 'households': 0.6842099529470617,
+ 'median_income': 0.5712999263108347,
+ 'ocean_proximity_<1H OCEAN': 1.12329372733702,
+ 'ocean_proximity_INLAND': -0.6827132915603219,
+ 'ocean_proximity_ISLAND': -0.015644874280329252,
+ 'ocean_proximity_NEAR BAY': -0.3535241910124512,
+ 'ocean_proximity_NEAR OCEAN': -0.3841861385422699}
+ ]
+ }
