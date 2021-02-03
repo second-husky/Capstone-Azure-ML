@@ -83,8 +83,8 @@ def main():
     r2_score = DT_model.score(X_test, y_test)
     run.log("r2_score", np.float(r2_score))
 
-    os.makedirs('./outputs', exist_ok = True)
-    joblib.dump(value = DT_model, filename='./outputs/model.joblib')
+#    os.makedirs('./outputs', exist_ok = True)
+    joblib.dump(value = DT_model, filename='model.joblib')
 
 if __name__ == '__main__':
     main()
