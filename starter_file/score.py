@@ -8,12 +8,12 @@ Created on Mon Feb  1 21:26:05 2021
 import json
 import numpy as np
 import os
-from sklearn.externals import joblib
+import joblib
 
 
 def init():
     global model
-    model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'hyper-model.joblib')
+    model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'),'outputs/hyper-model.joblib')
     model = joblib.load(model_path)
 
 def run(data):

@@ -82,9 +82,10 @@ def main():
     y_predict = DT_model.predict(X_test)
     r2_score = DT_model.score(X_test, y_test)
     run.log("r2_score", np.float(r2_score))
-
+#each run has their own .joblib file
+    joblib.dump(value = DT_model, filename='./outputs/hyper-model.joblib')
+    
 #    os.makedirs('./outputs', exist_ok = True)
-    joblib.dump(value = DT_model, filename='hyper-model.joblib')
 
 if __name__ == '__main__':
     main()
