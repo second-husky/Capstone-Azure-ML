@@ -13,7 +13,7 @@ import joblib
 
 def init():
     global model
-    model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'),'outputs/hyper-model.joblib')
+    model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'),'hyper-model.joblib')
     model = joblib.load(model_path)
 
 def run(data):
