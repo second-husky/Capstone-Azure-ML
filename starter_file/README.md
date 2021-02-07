@@ -85,7 +85,4 @@ The deployed model can be consumed by sending a HTTP request to the REST point
 ![alt text](https://github.com/second-husky/Capstone-Azure-ML/blob/master/starter_file/http_request.PNG)
 
 ## Screen Recording
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
-- A working model
-- Demo of the deployed  model
-- Demo of a sample request sent to the endpoint and its response
+screen recording for model deployment: https://www.youtube.com/watch?v=V19qv0pE-kI
