@@ -42,8 +42,11 @@ The best model produced by autoML used voting ensemble algorithm. It achieved a 
 The metrics of the best model from the AutoML run shows a R2 score of 0.8456
 ![alt text](https://github.com/second-husky/Capstone-Azure-ML/blob/master/starter_file/Automl_best_model_metrics.PNG)
 
-The properties of the best model show the algorithm and parameters of the model. It uses estimators including standardscalerwrapper and XGBoost regressor. Parameters of the XGBoost regressor is shown in the following screenshot. 
+The properties of the best model show the algorithm and parameters of the model. The model uses voting ensemble algorithm
 ![alt text](https://github.com/second-husky/Capstone-Azure-ML/blob/master/starter_file/Automl_best_model_properties.PNG)
+
+The best model uses estimators including standardscalerwrapper and XGBoost regressor. Parameters of the trained XGBoost regressor is shown in the following screenshot. 
+![alt text](https://github.com/second-husky/Capstone-Azure-ML/blob/master/starter_file/Automl_best_model_parameters.PNG)
 
 Using RunDetails to monitor and show the process of model training in AutoML
 ![alt text](https://github.com/second-husky/Capstone-Azure-ML/blob/master/starter_file/Automl_run_details.PNG)
