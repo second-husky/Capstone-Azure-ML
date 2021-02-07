@@ -1,27 +1,34 @@
-*NOTE:* This file is a template that you can use to create the README for your project. The *TODO* comments below will highlight the information you should be sure to include.
-
 # California Housing Price Prediction by Azure AutoML and Hyperdrive
 
-*TODO:* Write a short introduction to your project.
+The goal of this project is to use a California Housing Price dataset to train a machine learning model to predict the housing price based on the given geography, location, income and population information.
 
-The goal of this project is to use a California Housing Price dataset to train a machine learning model to predict the housing price.
-
-This dataset contains California Housing Price data downloaded from https://raw.githubusercontent.com/ageron/handson-ml/master/ and was used as an example in Hands-ON Machine Learning with Scikit-Learn & TensorFLow by Aurelien Geron.THe dataset is an adapted version from the original data from the Statlib repository collected from the 1990 California census.
-
+Models are built, trained and optimized using both AutoML and Hyperdrive on Microsoft Azure machine learning platform using Azure ML python SDK. The best model will be deployed to web service and can be used to predict housing prices through REST API.
 
 ## Project Set Up and Installation
-*OPTIONAL:* If your project has any special installation steps, this is where you should put it. To turn this project into a professional portfolio project, you are encouraged to explain how to set up this project in AzureML.
+
+Key steps of this project:
+1) Setup the working space and CPU based compute target for the experiments.   
+2) Load and clean data from data source and register the dataset to the default datastore
+3) Setup an automated ML experiment: run an automated ML experiment to search for and optimize a best model
+4) Setup a Hyperdrive experiment and optimize the parameters of a decision tree regression model
+5) deploy the best model: compare the results from AutoML and Hyperdrive. AutoML produced the best performing model using Stack Ensemble. The model was deployed as a web service 
+6) consume model endpoints: consume the endpoint by sending http request to use the best model to make predictions based on new input data
 
 ## Dataset
 
+
 ### Overview
-*TODO*: Explain about the data you are using and where you got it from.
+
+This dataset contains California Housing Price data downloaded from https://raw.githubusercontent.com/ageron/handson-ml/master/ and was used as an example in Hands-ON Machine Learning with Scikit-Learn & TensorFLow by Aurelien Geron.The dataset is an adapted version from the original data from the Statlib repository collected from the 1990 California census.
 
 ### Task
-*TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
+
+The dataset will be used as a baseline data to train the machine learning model, which will be used to predict the median housing price within an area. 
+The dataset has 10 columns including factors that influecing the housing price. Among them, columns longitude, latitude, housing_mdeian_age, total_rooms, total_bedrooms, population, households and median_income are numerical features. Ocean_proximity is a character feature. Median housing price is the label column and the value to be predicted using the model
 
 ### Access
-*TODO*: Explain how you are accessing the data in your workspace.
+
+Data was loaded as a pandas dataframe from the URL pointing to a csv file and then registered as a dataset in the datastore.
 
 ## Automated ML
 *TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
