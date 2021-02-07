@@ -41,6 +41,10 @@ In the configuration of the auto ML run, the CPU based compute target, the regis
 
 The best model produced by autoML used stack ensemble algorithm. It achieved a R2 score of 0.84563. 'Ensemble_iterations of the model is 15. Feeding more new data to increase the total sample size may improve the metric further. Or to adjust the weight of individual algorithms in the "stack".
 
+![alt text](https://github.com/second-husky/Capstone-Azure-ML/blob/master/starter_file/Automl_best_model_metrics.PNG)
+
+
+
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
 
 ## Hyperparameter Tuning
